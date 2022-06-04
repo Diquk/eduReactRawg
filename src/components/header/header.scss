@@ -13,3 +13,14 @@
     left: 10px;
   }
 }
+
+@media (max-width: 800px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+
+    &__company-name {
+      position: relative;
+    }
+  }
+}
