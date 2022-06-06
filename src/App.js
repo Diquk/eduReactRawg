@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import Header from './components/header/header.js';
+import { Header } from './components/header/header.js';
+import { GamesCollection } from './components/games-collecion/games-collection';
 
-function App() {
+export function App() {
 
   const [data, setData] = useState(null);
 
@@ -14,8 +15,9 @@ function App() {
   return (
     <div className="App">
       <Header data={data} getData={getData}/>
+      {data && 
+        <GamesCollection data={data}/>
+      }
     </div>
   );
 }
-
-export default App;

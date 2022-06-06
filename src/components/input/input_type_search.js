@@ -1,6 +1,6 @@
 import './input.scss';
 
-function InputTypeSearch(props) {
+export function InputTypeSearch(props) {
   return (
     <input type="text"  
     placeholder="Search 500 000+ games" 
@@ -10,5 +10,3 @@ function InputTypeSearch(props) {
     onChange={props.onChange}/>
   );
 }
-
-export default InputTypeSearch;

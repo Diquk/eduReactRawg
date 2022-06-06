@@ -1,9 +1,9 @@
 import './header.scss';
-import SearchForm from '../search-form/search-form.js';
+import { SearchForm } from '../search-form/search-form.js';
 import  '../company-name/company-name.scss';
 import '../link/link.scss';
 
-function Header(props) {
+export function Header(props) {
   return (
     <header className="header">
       <a href="#" className="company-name header__company-name link">Games DB</a>
@@ -13,5 +13,3 @@ function Header(props) {
     </header>
   );
 }
-
-export default Header;

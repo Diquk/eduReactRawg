@@ -1,0 +1,33 @@
+.platform {
+  display: inline-block;
+  padding: 0 10px;
+  width: 30px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  &_xbox {
+    background-image: url("./assets/xbox.png");
+  }
+
+  &_pc {
+    background-image: url("./assets/pc.png");
+  }
+
+  &_playstation {
+    background-image: url("./assets/playstation.png");
+  }
+
+  &_nintendo {
+    background-image: url("./assets/nintendo.png");
+  }
+
+  &_macos {
+    background-image: url("./assets/mac.png");
+  }
+
+  &_linux {
+    background-image: url("./assets/linux.png");
+  }
+
+}

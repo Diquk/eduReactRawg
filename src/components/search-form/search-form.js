@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import InputTypeSearch from '../input/input_type_search';
+import { InputTypeSearch } from '../input/input_type_search';
 import '../button/button.scss';
 import './search-form.scss';
 
-function SearchForm(props) {
+export function SearchForm(props) {
 
   const [text, setText] = useState("");
+
+  useEffect(() => {
+    fetch(`https://api.rawg.io/api/games?key=c64dcb4fc5d943d2a5d29172c06e2088`)
+    .then((json) => json.json())  
+    .then((data) => props.getData(data));
+  }, []);
 
   function changeText(value) {
     setText(value.target.value);
@@ -30,5 +36,3 @@ function SearchForm(props) {
     </form>
   );
 }
-
-export default SearchForm;
