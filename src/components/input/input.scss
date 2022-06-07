@@ -1,0 +1,11 @@
+.input {
+  border: none;
+
+  &_type_search {
+    width: 350px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
