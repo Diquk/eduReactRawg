@@ -4,9 +4,9 @@ import { Platform } from "../platform/platform";
  
 export function GameCard(props) {
 
-  const listPlatforms = props.platforms.map(item => 
+  const listPlatforms = props.platforms?.map(item => 
     <Platform platform={item.platform.name}  key={item.platform.id}/>
-  );
+  ) ?? [];
 
   let uniqPlatform = new Set();
   const newListPlatforms = listPlatforms.filter((item) => {

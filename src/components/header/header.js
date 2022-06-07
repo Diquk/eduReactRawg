@@ -9,7 +9,10 @@ export function Header(props) {
       <a href="#" className="company-name header__company-name link">Games DB</a>
       <SearchForm className="header__search-form" 
       data={props.data}
-      getData={props.getData}/>
+      getData={props.getData}
+      searchString={props.searchString}
+      setSearch={props.setSearch}
+      setLoading={props.setLoading}/>
     </header>
   );
 }
