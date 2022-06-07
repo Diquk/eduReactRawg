@@ -1,5 +1,4 @@
 import "./orderButton.scss";
-import { useState, useEffect } from "react";
 
 export const OrderButton = (props) => {
   return(

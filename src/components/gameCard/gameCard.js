@@ -1,8 +1,8 @@
-import "./game-card.scss";
+import "./gameCard.scss";
 import "../rating/rating.scss";
 import { Platform } from "../platform/platform";
  
-export function GameCard(props) {
+export const GameCard = (props) => {
 
   const listPlatforms = props.platforms?.map(item => 
     <Platform platform={item.platform.name}  key={item.platform.id}/>

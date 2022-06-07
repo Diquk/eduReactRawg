@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { InputTypeSearch } from '../input/input_type_search';
-import '../button/button.scss';
-import './search-form.scss';
+import React, { useState, useEffect } from "react";
+import { InputTypeSearch } from "../input/inputTypeSearch";
+import "../button/button.scss";
+import "./searchForm.scss";
 import { useSearchParams } from "react-router-dom";
 
-export function SearchForm(props) {
+export const SearchForm = (props) => {
 
   const [text, setText] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,6 +27,7 @@ export function SearchForm(props) {
 
   }, []);
 
+  //fetch data on url change
   useEffect(() => {
     if(searchText || orderingText) {
       setSearchParams(setNewURL());
@@ -52,6 +53,7 @@ export function SearchForm(props) {
     setText(value.target.value);
   }
 
+  //Change url on submit
   function handleSubmit(e) {
     e && e.preventDefault();
     props.setLoading(true);

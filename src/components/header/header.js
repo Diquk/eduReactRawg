@@ -1,9 +1,9 @@
-import './header.scss';
-import { SearchForm } from '../search-form/search-form.js';
-import  '../company-name/company-name.scss';
-import '../link/link.scss';
+import "./header.scss";
+import { SearchForm } from "../searchForm/searchForm";
+import  "../companyName/companyName.scss";
+import "../link/link.scss";
 
-export function Header(props) {
+export const Header = (props) => {
   return (
     <header className="header">
       <a href="#" className="company-name header__company-name link">Games DB</a>

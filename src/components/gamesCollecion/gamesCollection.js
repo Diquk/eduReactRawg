@@ -1,11 +1,10 @@
-import { GameCard } from "../game-card/game-card";
-import "./games-collection.scss";
-import { useParams } from "react-router-dom";
+import { GameCard } from "../gameCard/gameCard";
+import "./gamesCollection.scss";
 import { Loader } from "../loading/loader";
 import { OrderButtons } from "../orderButtons/orderButtons";
 
 
-export function GamesCollection(props) {
+export const GamesCollection = (props) => {
   const listGames = props.data && props.data.results.map((item) =>
     <GameCard key={item.id} 
     rating={item.metacritic} 

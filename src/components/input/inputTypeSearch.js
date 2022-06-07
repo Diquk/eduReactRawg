@@ -1,6 +1,6 @@
-import './input.scss';
+import "./input.scss";
 
-export function InputTypeSearch(props) {
+export const InputTypeSearch = (props) => {
   return (
     <input type="text"  
     placeholder="Search 500 000+ games" 

@@ -1,6 +1,6 @@
 import "./platform.scss";
 
-export function Platform(props) {
+export const Platform = (props) => {
 
   const platform = "platform platform_" + props.platform.split(' ')[0].toLowerCase();
 

@@ -15,6 +15,7 @@ export const OrderButtons = () => {
       checkedOrder={checkedOrder}/>
   );
 
+  //Set active radio buton on url change
   useEffect(() => {
     if(searchParams.get("ordering")) {
       console.log(listOrdersButtons);
@@ -22,8 +23,8 @@ export const OrderButtons = () => {
     }
   }, [searchParams]);
 
+  //Change url on radio button click
   function changeHandler(e) {
-    console.log(e.target);
     if (searchParams.get("search")) {
       let newSearchUrl = new URLSearchParams();
       newSearchUrl.set("search", searchParams.get("search"));
