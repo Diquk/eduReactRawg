@@ -10,6 +10,7 @@ export function SearchForm(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchText = searchParams.get("search");
+  const orderingText = searchParams.get("ordering");
 
   useEffect(() => {
     if (!searchText) {
@@ -27,15 +28,24 @@ export function SearchForm(props) {
   }, []);
 
   useEffect(() => {
-    if(searchText) {
-      setSearchParams("search=" + searchText);
-      setText(searchText);
-      fetch(`https://api.rawg.io/api/games?key=c64dcb4fc5d943d2a5d29172c06e2088&search=${searchText}`)
+    if(searchText || orderingText) {
+      setSearchParams(setNewURL());
+      searchText && setText(searchText);
+      props.setLoading(true);
+      fetch(`https://api.rawg.io/api/games?key=c64dcb4fc5d943d2a5d29172c06e2088&${setNewURL()}`)
         .then((json) => json.json())  
         .then((data) => {props.getData(data); props.setLoading(false);});
     }
-  }, [searchText])
+  }, [searchText, orderingText])
 
+  function setNewURL(text) {
+    let newSearchUrl = new URLSearchParams();
+    text && newSearchUrl.set("search", text);
+    text || searchText && newSearchUrl.set("search",searchText);
+    orderingText && newSearchUrl.set("ordering", orderingText);
+    
+    return newSearchUrl;
+  }
   
 
   function changeText(value) {
@@ -45,7 +55,7 @@ export function SearchForm(props) {
   function handleSubmit(e) {
     e && e.preventDefault();
     props.setLoading(true);
-    setSearchParams("search=" + text);
+    setSearchParams(setNewURL(text));
   }
 
 

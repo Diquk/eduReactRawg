@@ -1,14 +1,17 @@
 import "./orderButton.scss";
+import { useState, useEffect } from "react";
 
 export const OrderButton = (props) => {
   return(
     <div className="order-button">
       <input type="radio" 
-      id={props.order} 
-      name="order" 
-      value={props.orderName}
-      className="order-button__input"/>
-      <label for={props.order} className="order-button__name">
+        id={props.orderName} 
+        name="order" 
+        value={props.orderName}
+        className="order-button__input"
+        checked={props.checkedOrder==props.orderName}/>
+      <label htmlFor={props.orderName} 
+        className="order-button__name">
         {props.orderName}
       </label>
     </div>
