@@ -1,27 +1,28 @@
 import React, { useState } from "react";
-import { Header } from "./components/header/header.js";
-import { GamesCollection } from "./components/gamesCollecion/gamesCollection";
 import { Route, Routes, Navigate } from "react-router-dom";
+
+import { Header } from "common/components/header/header";
+import { GamesCollection } from "common/components/gamesCollection/gamesCollection";
 
 export const App = () => {
 
-  const [data, setData] = useState(null);
-  let [isLoading, setLoading] = useState(true);
+  const [gamesData, setGamesData] = useState(null);
+  let [isLoadingData, setLoadingData] = useState(true);
 
-  function getData(value) {
-    setData(value);
+  function getGamesData(value) {
+    setGamesData(value);
   }
 
   return (
     <div className="App">
-      <Header data={data} 
-        getData={getData} 
-        setLoading={setLoading} />
+      <Header gamesData={gamesData} 
+        getGamesData={getGamesData} 
+        setLoadingData={setLoadingData} />
       <Routes>
         <Route path="/home" 
           element={<GamesCollection 
-            data={data} 
-            isLoading={isLoading}/>}/>
+            gamesData={gamesData} 
+            isLoadingData={isLoadingData}/>}/>
         <Route
           path="*"
           element={<Navigate to="/home" replace />}/>

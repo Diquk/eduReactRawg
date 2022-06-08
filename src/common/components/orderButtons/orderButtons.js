@@ -1,7 +1,9 @@
-import { OrderButton } from "../orderButton/orderButton";
-import "./orderButtons.scss";
-import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+
+import "common/components/orderButtons/orderButtons.scss";
+
+import { OrderButton } from "common/components/orderButton/orderButton";
 
 export const OrderButtons = () => {
   const [searchParams, setSearchParams] = useSearchParams("");
@@ -15,7 +17,7 @@ export const OrderButtons = () => {
       checkedOrder={checkedOrder}/>
   );
 
-  //Set active radio buton on url change
+  //Set active radio button on url change
   useEffect(() => {
     if(searchParams.get("ordering")) {
       setChekedOrder(searchParams.get("ordering"));
@@ -23,22 +25,19 @@ export const OrderButtons = () => {
   }, [searchParams]);
 
   //Change url on radio button click
-  function changeHandler(e) {
+  function onOrderRadioChange(e) {
+    let newSearchUrl = new URLSearchParams();
+    newSearchUrl.set("ordering", e.target.value);
     if (searchParams.get("search")) {
-      let newSearchUrl = new URLSearchParams();
       newSearchUrl.set("search", searchParams.get("search"));
-      newSearchUrl.set("ordering", e.target.value);
       setSearchParams(newSearchUrl);
     } else {
-      let newSearchUrl = new URLSearchParams();
-      newSearchUrl.set("ordering", e.target.value);
-      console.log(newSearchUrl.get("ordering"));
       setSearchParams(newSearchUrl);
     }
   }
 
   return(
-    <div className="order-buttons" onChange={changeHandler}>
+    <div className="order-buttons" onChange={onOrderRadioChange}>
       {listOrdersButtons}
     </div>
   );
