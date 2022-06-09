@@ -1,9 +1,11 @@
-import "project/home/components/gameCard/gameCard.scss";
+import { Link } from "react-router-dom";
+
 import "common/components/rating/rating.scss";
+import "project/home/components/gameCard/gameCard.scss";
 
 import { Platform } from "common/components/platform/platform";
  
-export const GameCard = ({rating, name, platforms, imageURL}) => {
+export const GameCard = ({rating, name, platforms, imageURL, gameId}) => {
 
   let uniqPlatform = new Set();
   const listPlatforms = platforms?.map(item => { 
@@ -16,12 +18,14 @@ export const GameCard = ({rating, name, platforms, imageURL}) => {
   }) ?? [];
 
   return(
-    <div className="game-card" style={{backgroundImage: `url(${imageURL})`}}>
-      {rating && <span className="rating game-card__rating">{rating}</span>}
-      <h4 className="game-card__title">{name}</h4>
-      <div className="game-card__platforms">
-        {listPlatforms}
+    <Link to={`/game-details/${gameId}`}>
+      <div className="game-card" style={{backgroundImage: `url(${imageURL})`}}>
+        {rating && <span className="rating game-card__rating">{rating}</span>}
+        <h4 className="game-card__title">{name}</h4>
+        <div className="game-card__platforms">
+          {listPlatforms}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
