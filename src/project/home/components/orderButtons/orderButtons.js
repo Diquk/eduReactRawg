@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import "common/components/orderButtons/orderButtons.scss";
+import "project/home/components/orderButtons/orderButtons.scss";
 
-import { OrderButton } from "common/components/orderButton/orderButton";
+import { OrderButton } from "project/home/components/orderButton/orderButton";
 
 export const OrderButtons = () => {
   const [searchParams, setSearchParams] = useSearchParams("");

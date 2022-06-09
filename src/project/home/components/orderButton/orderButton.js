@@ -1,4 +1,4 @@
-import "common/components/orderButton/orderButton.scss";
+import "project/home/components/orderButton/orderButton.scss";
 
 export const OrderButton = ({orderName, checkedOrder}) => {
   return(

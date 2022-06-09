@@ -1,4 +1,4 @@
-import "common/components/gameCard/gameCard.scss";
+import "project/home/components/gameCard/gameCard.scss";
 import "common/components/rating/rating.scss";
 
 import { Platform } from "common/components/platform/platform";

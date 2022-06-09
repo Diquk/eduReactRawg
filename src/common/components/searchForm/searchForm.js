@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import "common/components/button/button.scss";
-import "common/services/searchForm/searchForm.scss";
+import "common/components/searchForm/searchForm.scss";
 
 import { InputTypeSearch } from "common/components/input/inputTypeSearch";
-import { setNewURL } from "common/services/searchForm/utils/setNewURL";
+import { setNewURL } from "common/components/searchForm/utils/setNewURL";
+import { getInitialGamesList } from "common/services/getInitialGamesList";
+import { getGamesList } from "common/services/getGamesList";
 
 export const SearchForm = ({getGamesData, setLoadingData, className}) => {
 
@@ -18,23 +20,17 @@ export const SearchForm = ({getGamesData, setLoadingData, className}) => {
   useEffect(() => {
     if (!searchText) {
       setLoadingData(true);
-      fetch(`https://api.rawg.io/api/games?key=c64dcb4fc5d943d2a5d29172c06e2088`)
-        .then((json) => json.json())  
-        .then((data) => {getGamesData(data); setLoadingData(false)})
-      console.log("first fetch");
+      getInitialGamesList()
+        .then(data => {getGamesData(data); setLoadingData(false)})
     }
   }, []);
 
   //fetch data on url change
   useEffect(() => {
     if(searchText || orderingText) {
-      let newURL = setNewURL("", searchText, orderingText);
-      setSearchParams(newURL);
-      searchText && setText(searchText);
       setLoadingData(true);
-      fetch(`https://api.rawg.io/api/games?key=c64dcb4fc5d943d2a5d29172c06e2088&${newURL}`)
-        .then((json) => json.json())  
-        .then((data) => {getGamesData(data); setLoadingData(false);});
+      getGamesList(searchText, orderingText, setSearchParams, setText, setNewURL)
+        .then(data => {getGamesData(data); setLoadingData(false)})
     }
   }, [searchText, orderingText])
 

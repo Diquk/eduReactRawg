@@ -1,8 +1,8 @@
-import "common/components/gamesCollection/gamesCollection.scss";
+import "project/home/components/gamesCollection/gamesCollection.scss";
 
-import { GameCard } from "common/components/gameCard/gameCard";
+import { GameCard } from "project/home/components/gameCard/gameCard";
 import { Loader } from "common/components/loader/loader";
-import { OrderButtons } from "common/components/orderButtons/orderButtons";
+import { OrderButtons } from "project/home/components/orderButtons/orderButtons";
 
 
 export const GamesCollection = ({gamesData, isLoadingData}) => {

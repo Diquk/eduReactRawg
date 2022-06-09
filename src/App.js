@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import { Header } from "common/components/header/header";
-import { GamesCollection } from "common/components/gamesCollection/gamesCollection";
+import { GamesCollection } from "project/home/components/gamesCollection/gamesCollection";
 
 export const App = () => {
 
