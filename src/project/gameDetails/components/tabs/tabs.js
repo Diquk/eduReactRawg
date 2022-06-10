@@ -1,10 +1,18 @@
-import { useState } from "react"; 
+import { useState } from "react";
+
+import "project/gameDetails/components/tabs/tabs.scss";
 
 import { TabNavItem } from "project/gameDetails/components/tabs/tabNavItem/tabNavItem";
 import { TabContent } from "project/gameDetails/components/tabs/tabContent/tabContent";
+import { Slider } from "project/gameDetails/components/slider/slider";
+import { EmptyResults } from "project/gameDetails/components/emptyResults/emptyResults";
 
-export const Tabs = ({gameDescription}) => {
-  const [activeTab, setActiveTab] = useState("tab1")
+export const Tabs = ({gameDescription, gameScreenshots, gameVideos}) => {
+  const [activeTab, setActiveTab] = useState("tab1");
+
+  function setTabClassName(tabId) {
+    return `tabs__content tabs__content_${(tabId === activeTab) ? "active" : "deactive"}`
+  }
 
   return(
     <div className="tabs">
@@ -13,16 +21,20 @@ export const Tabs = ({gameDescription}) => {
         <TabNavItem title="Screenshots" id="tab2" activeTab={activeTab} setActiveTab={setActiveTab}/>
         <TabNavItem title="Trailers" id="tab3" activeTab={activeTab} setActiveTab={setActiveTab}/>
       </div>
-      <TabContent id="tab1" activeTab={activeTab}>
+      <TabContent tabClassName={setTabClassName("tab1")}>
         <div dangerouslySetInnerHTML={{__html: gameDescription}}>
 
         </div>
       </TabContent>
-      <TabContent id="tab2" activeTab={activeTab}>
-        <div>2</div>
+      <TabContent tabClassName={setTabClassName("tab2")}>
+        {gameScreenshots.length
+        ? <Slider arrayOfContent={gameScreenshots} tag="img"/>
+        : <EmptyResults />} 
       </TabContent>
-      <TabContent id="tab3" activeTab={activeTab}>
-        <div>3</div>
+      <TabContent tabClassName={setTabClassName("tab3")}>
+        {gameVideos.length
+        ? <Slider arrayOfContent={gameVideos} tag="video"/>
+        : <EmptyResults />}
       </TabContent>
     </div>
   );

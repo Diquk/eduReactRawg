@@ -1,8 +1,7 @@
-export const TabContent = ({id, activeTab, children}) => {
+export const TabContent = ({tabClassName, children}) => {
   return (
-    activeTab === id ? <div className="tabs__content">
+    <div className={tabClassName}>
       { children }
     </div>
-    : null
   );
 }

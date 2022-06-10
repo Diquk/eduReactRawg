@@ -1,0 +1,31 @@
+@import "defaultVariables";
+
+.tabs {
+  &__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+  }
+
+  &__nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    height: 100%;
+    cursor: pointer;
+
+    &_active {
+      border-bottom: 2px solid $color-tab-active;
+    }
+  }
+
+  &__content {
+    margin-top: 2rem;
+    padding: 0 2rem;
+
+    &_deactive {
+      display: none;
+    }
+  }
+}

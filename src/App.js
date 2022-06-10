@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
+import "App.scss";
+
 import { Header } from "common/components/header/header";
 import { GamesCollection } from "project/home/components/gamesCollection/gamesCollection";
 import { GameContent } from "project/gameDetails/components/gameContent/gameContent";
