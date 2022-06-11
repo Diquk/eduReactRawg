@@ -7,31 +7,23 @@ export const SliderContent = ({children, position, currentPosition}) => {
     setStyle(setStyleCustom());
   }, [currentPosition]);
 
-  function setPositionClassName() {
-    let positionClassName;
-    if (position === currentPosition) 
-      positionClassName = "slider__content_active";
-    else
-      positionClassName = "slider__content_deactive";
-    
-    return positionClassName;
+  const setPositionClassName = () => {
+    return `slider__content_${position === currentPosition ? "active" : "deactive"}`;
   }
 
-  function setStyleCustom() {
-    if (position > currentPosition)
+  const setStyleCustom = () => {
+    if (position > currentPosition) {
       return {
         "transform": 'translateX(200%)',
       };
-    else if (position < currentPosition)
+    }
+    if (position < currentPosition) {
       return {
         "transform": `translateX(-200%)`,
-        
-      }
-    else
-      return {
-        //"animation": "show 1s 1",
-        //"animationFillMode": "forwards",
       };
+    }
+    
+    return {};
   }
 
   return (

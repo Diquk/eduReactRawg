@@ -1,13 +1,9 @@
 export const SliderArrow = ({currentPosition, totalLength, changePosition, direction, isActive}) => {
-  function setClassName(direction, isActive) {
-    let className;
-    direction === "left" 
-      ? className = "slider__arrow slider__arrow_left slider__arrow_" + (isActive?"active":"deactive")
-      : className = "slider__arrow slider__arrow_right slider__arrow_" + (isActive?"active":"deactive");
-    return className;
+  const setClassName = (direction, isActive) => {
+    return `slider__arrow slider__arrow_${direction} slider__arrow_${isActive ? "active" : "deactive"}`;;
   }
 
-  function onArrowClick(e) {
+  const onArrowClick = (e) => {
     if(isActive) { 
       direction === "left" 
         ? changePosition(currentPosition-1)

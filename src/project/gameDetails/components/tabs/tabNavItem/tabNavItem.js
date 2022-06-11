@@ -1,5 +1,5 @@
 export const TabNavItem = ({title, id, activeTab, setActiveTab}) => {
-  function onClickChangeActive(e) {
+  const onClickChangeActive = (e) => {
     setActiveTab(id);
   }
 

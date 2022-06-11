@@ -7,24 +7,18 @@ import { SliderContent } from "project/gameDetails/components/slider/sliderConte
 
 export const Slider = ({arrayOfContent, tag}) => {
   let [position, setPosition] = useState(0);
-  const listOfContent = tag === "img" ? arrayOfContent?.map((item, index) => {
-    return <SliderContent position={index} currentPosition={position} key={index}>
-      <img src={item.image} className="slider__img"/>
-    </SliderContent>
-  }) ?? [] 
-    : tag === "video" 
-    ? arrayOfContent?.map((item, index) => {
-      
-      return <SliderContent position={index} currentPosition={position} key={index}>
-        <video className="slider__video" controls muted>
-          <source src={item.data[480]}/>
-        </video>
-      </SliderContent>
-  }) ?? [] : null;
-
-  useEffect(() => {
-
-  }, [position]);
+  const listOfContent = arrayOfContent?.map((item, index) => {
+    return tag === "img" ? 
+            <SliderContent position={index} currentPosition={position} key={index}>
+                <img src={item.image} className="slider__img"/>
+            </SliderContent> :
+            tag === "video" ?
+            <SliderContent position={index} currentPosition={position} key={index}>
+              <video className="slider__video" controls muted>
+                <source src={item.data[480]}/>
+              </video>
+            </SliderContent> : null;
+  }) ?? []
 
   return (
     <div className="slider">

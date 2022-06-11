@@ -7,7 +7,6 @@ import { Header } from "common/components/header/header";
 import { GamesCollection } from "project/home/components/gamesCollection/gamesCollection";
 import { GameContent } from "project/gameDetails/components/gameContent/gameContent";
 
-
 export const App = () => {
 
   const [gamesData, setGamesData] = useState(null);

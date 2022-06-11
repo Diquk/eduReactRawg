@@ -10,7 +10,7 @@ import { EmptyResults } from "project/gameDetails/components/emptyResults/emptyR
 export const Tabs = ({gameDescription, gameScreenshots, gameVideos}) => {
   const [activeTab, setActiveTab] = useState("tab1");
 
-  function setTabClassName(tabId) {
+  const setTabClassName = (tabId) => {
     return `tabs__content tabs__content_${(tabId === activeTab) ? "active" : "deactive"}`
   }
 
@@ -22,9 +22,7 @@ export const Tabs = ({gameDescription, gameScreenshots, gameVideos}) => {
         <TabNavItem title="Trailers" id="tab3" activeTab={activeTab} setActiveTab={setActiveTab}/>
       </div>
       <TabContent tabClassName={setTabClassName("tab1")}>
-        <div dangerouslySetInnerHTML={{__html: gameDescription}}>
-
-        </div>
+        <div dangerouslySetInnerHTML={{__html: gameDescription}} />
       </TabContent>
       <TabContent tabClassName={setTabClassName("tab2")}>
         {gameScreenshots.length

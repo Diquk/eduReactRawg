@@ -1,4 +1,4 @@
-export function baseFetch(url) {
+export const baseFetch = (url) => {
   return fetch(url)
           .then((response) => {
             if (!response.ok) {

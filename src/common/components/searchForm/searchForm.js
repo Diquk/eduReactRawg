@@ -35,12 +35,12 @@ export const SearchForm = ({getGamesData, setLoadingData, className}) => {
     }
   }, [searchText, orderingText])
 
-  function onChangeTextInInput(value) {
+  const onChangeTextInInput = (value) => {
     setText(value.target.value);
   }
 
   //Change url on submit
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e && e.preventDefault();
     setLoadingData(true);
     navigate("/home?" + setNewURL(text, searchText, orderingText).toString());
