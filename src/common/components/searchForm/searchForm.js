@@ -35,8 +35,8 @@ export const SearchForm = ({getGamesData, setLoadingData, className}) => {
     }
   }, [searchText, orderingText])
 
-  const onChangeTextInInput = (value) => {
-    setText(value.target.value);
+  const onChangeTextInInput = (e) => {
+    setText(e.target.value);
   }
 
   //Change url on submit

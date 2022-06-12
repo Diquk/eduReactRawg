@@ -12,18 +12,14 @@ export const SliderContent = ({children, position, currentPosition}) => {
   }
 
   const setStyleCustom = () => {
-    if (position > currentPosition) {
-      return {
-        "transform": 'translateX(200%)',
-      };
+    if (position === currentPosition) {
+      return {};
     }
-    if (position < currentPosition) {
-      return {
-        "transform": `translateX(-200%)`,
-      };
-    }
+    const positionOffset = position > currentPosition ? 200 : -200;
     
-    return {};
+    return {
+      "transform": `translateX(${positionOffset}%)`,
+    };
   }
 
   return (

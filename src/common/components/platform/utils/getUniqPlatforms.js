@@ -1,13 +1,11 @@
-import { Platform } from "common/components/platform/platform";
-
-export const getUniqPlatforms = (gamePlatforms, mod) => {
+export const getUniqPlatforms = (gamePlatforms) => {
   let uniqPlatforms = new Set();
-  return gamePlatforms?.map(item => { 
+  gamePlatforms?.forEach(item => { 
     let platformName = item.platform.name.split(" ")[0];
     if (!uniqPlatforms.has(platformName)) {
       uniqPlatforms.add(platformName);
-      return <Platform platform={platformName}  
-        key={platformName} mod={mod || null}/>;
     }
-  }) ?? [];
+  });
+
+  return Array.from(uniqPlatforms);
 }
