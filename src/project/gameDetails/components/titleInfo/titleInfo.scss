@@ -1,0 +1,52 @@
+@import "defaultVariables.scss";
+
+%topLayer {
+  position: relative;
+  margin: 0;
+  z-index: $z-index-top;
+}
+
+.title-info {
+  position: relative;
+  padding: 2rem;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 50%;
+  color: $font-color-white;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $font-color-main;
+    opacity: $opacity-half;
+  }
+
+  &__title {
+    @extend %topLayer;
+    font-weight: 600;
+  }
+
+  &__release {
+    @extend %topLayer;
+    margin: 1.5rem 0;
+    font-weight: 600;
+  }
+
+  &__rating {
+    margin-left: 1rem;
+  }
+
+  &__genres {
+    @extend %topLayer;
+  }
+
+  &__platforms {
+    @extend %topLayer;
+    margin-top: 1rem;
+  }
+}

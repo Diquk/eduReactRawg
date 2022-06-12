@@ -11,7 +11,8 @@ export const GamesCollection = ({gamesData, isLoadingData}) => {
     rating={item.metacritic} 
     name={item.name}
     platforms={item.platforms}
-    imageURL={item.background_image}/>
+    imageURL={item.background_image}
+    gameId={item.id}/>
   );
 
   return (
