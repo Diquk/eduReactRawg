@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import "common/components/button/button.scss";
 import "common/components/searchForm/searchForm.scss";
@@ -13,6 +13,7 @@ export const SearchForm = ({getGamesData, setLoadingData, className}) => {
 
   const [text, setText] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const searchText = searchParams.get("search");
   const orderingText = searchParams.get("ordering");
@@ -34,15 +35,15 @@ export const SearchForm = ({getGamesData, setLoadingData, className}) => {
     }
   }, [searchText, orderingText])
 
-  function onChangeTextInInput(value) {
-    setText(value.target.value);
+  const onChangeTextInInput = (e) => {
+    setText(e.target.value);
   }
 
   //Change url on submit
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e && e.preventDefault();
     setLoadingData(true);
-    setSearchParams(setNewURL(text, searchText, orderingText));
+    navigate("/home?" + setNewURL(text, searchText, orderingText).toString());
   }
 
 

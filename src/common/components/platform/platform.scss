@@ -6,6 +6,11 @@
   background-size: contain;
   background-repeat: no-repeat;
 
+  &_title {
+    width: 50px;
+    height: 40px;
+  }
+
   &_xbox {
     background-image: url("./assets/xbox.png");
   }

@@ -1,0 +1,13 @@
+.game-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  min-width: 1000px;
+}
+
+@media (max-width: 1000px) {
+  .game-content {
+    width: 100%;
+    min-width: 200px;
+  }
+}
