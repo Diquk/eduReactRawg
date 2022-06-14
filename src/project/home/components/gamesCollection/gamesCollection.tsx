@@ -3,16 +3,20 @@ import "project/home/components/gamesCollection/gamesCollection.scss";
 import { GameCard } from "project/home/components/gameCard/gameCard";
 import { Loader } from "common/components/loader/loader";
 import { OrderButtons } from "project/home/components/orderButtons/orderButtons";
+import { GamesData } from "interfaceses";
 
-
-export const GamesCollection = ({gamesData, isLoadingData}) => {
+interface GamesCollectionProps {
+  gamesData: GamesData | null;
+  isLoadingData: boolean;
+}
+export const GamesCollection = ({gamesData, isLoadingData}: GamesCollectionProps) => {
   const listGames = gamesData && gamesData.results.map((item) =>
     <GameCard key={item.id} 
-    rating={item.metacritic} 
+    metacritic={item.metacritic} 
     name={item.name}
     platforms={item.platforms}
-    imageURL={item.background_image}
-    gameId={item.id}/>
+    background_image={item.background_image}
+    id={item.id}/>
   );
 
   return (

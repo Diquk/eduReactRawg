@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import "project/home/components/orderButtons/orderButtons.scss";
@@ -25,11 +25,12 @@ export const OrderButtons = () => {
   }, [searchParams]);
 
   //Change url on radio button click
-  function onOrderRadioChange(e) {
+  function onOrderRadioChange(e: React.ChangeEvent<HTMLInputElement>) {
     let newSearchUrl = new URLSearchParams();
     newSearchUrl.set("ordering", e.target.value);
-    if (searchParams.get("search")) {
-      newSearchUrl.set("search", searchParams.get("search"));
+    let searchText = searchParams.get("search");
+    if (searchText) {
+      newSearchUrl.set("search", searchText);
       setSearchParams(newSearchUrl);
     } else {
       setSearchParams(newSearchUrl);

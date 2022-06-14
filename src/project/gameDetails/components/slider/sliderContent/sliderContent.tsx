@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 
-export const SliderContent = ({children, position, currentPosition}) => {
-  let [style, setStyle] = useState(null);
+interface SliderContentProps {
+  children: React.ReactNode;
+  position: number;
+  currentPosition: number;
+}
+
+type StyleObject = Record<string, string>;
+
+export const SliderContent = ({children, position, currentPosition}: SliderContentProps) => {
+  let [style, setStyle] = useState<StyleObject>({});
 
   useEffect(() => {
     setStyle(setStyleCustom());
@@ -11,7 +19,7 @@ export const SliderContent = ({children, position, currentPosition}) => {
     return `slider__content_${position === currentPosition ? "active" : "deactive"}`;
   }
 
-  const setStyleCustom = () => {
+  const setStyleCustom = (): StyleObject => {
     if (position === currentPosition) {
       return {};
     }

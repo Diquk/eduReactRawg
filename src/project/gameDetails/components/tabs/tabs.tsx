@@ -6,11 +6,18 @@ import { TabNavItem } from "project/gameDetails/components/tabs/tabNavItem/tabNa
 import { TabContent } from "project/gameDetails/components/tabs/tabContent/tabContent";
 import { Slider } from "project/gameDetails/components/slider/slider";
 import { EmptyResults } from "project/gameDetails/components/emptyResults/emptyResults";
+import { GameScreenshot, GameVideo } from "interfaceses";
 
-export const Tabs = ({gameDescription, gameScreenshots, gameVideos}) => {
+interface TabsProps {
+  gameDescription?: string;
+  gameScreenshots?: GameScreenshot[];
+  gameVideos?: GameVideo[];
+}
+
+export const Tabs = ({gameDescription, gameScreenshots, gameVideos}: TabsProps) => {
   const [activeTab, setActiveTab] = useState("tab1");
 
-  const setTabClassName = (tabId) => {
+  const setTabClassName = (tabId: string) => {
     return `tabs__content tabs__content_${(tabId === activeTab) ? "active" : "deactive"}`
   }
 
@@ -22,15 +29,16 @@ export const Tabs = ({gameDescription, gameScreenshots, gameVideos}) => {
         <TabNavItem title="Trailers" id="tab3" activeTab={activeTab} setActiveTab={setActiveTab}/>
       </div>
       <TabContent tabClassName={setTabClassName("tab1")}>
-        <div dangerouslySetInnerHTML={{__html: gameDescription}} />
+        {gameDescription &&
+        <div dangerouslySetInnerHTML={{__html: gameDescription}} />}
       </TabContent>
       <TabContent tabClassName={setTabClassName("tab2")}>
-        {gameScreenshots.length
+        {gameScreenshots?.length
         ? <Slider arrayOfContent={gameScreenshots} tag="img"/>
         : <EmptyResults />} 
       </TabContent>
       <TabContent tabClassName={setTabClassName("tab3")}>
-        {gameVideos.length
+        {gameVideos?.length
         ? <Slider arrayOfContent={gameVideos} tag="video"/>
         : <EmptyResults />}
       </TabContent>

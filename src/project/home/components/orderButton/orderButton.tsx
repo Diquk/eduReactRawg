@@ -1,6 +1,11 @@
 import "project/home/components/orderButton/orderButton.scss";
 
-export const OrderButton = ({orderName, checkedOrder}) => {
+interface OrderButtonProps {
+  orderName: string;
+  checkedOrder: string | null;
+}
+
+export const OrderButton = ({orderName, checkedOrder}: OrderButtonProps) => {
   return(
     <div className="order-button">
       <input type="radio" 

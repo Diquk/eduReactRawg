@@ -1,6 +1,11 @@
 import "common/components/input/input.scss";
 
-export const InputTypeSearch = ({value, onChange}) => {
+interface InputTypeSearchProps {
+  value: string;
+  onChange: (e: React.ChangeEvent) => void;
+}
+
+export const InputTypeSearch = ({value, onChange}: InputTypeSearchProps) => {
   return (
     <input type="text"  
     placeholder="Search 500 000+ games" 

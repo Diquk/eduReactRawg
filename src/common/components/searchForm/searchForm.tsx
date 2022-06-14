@@ -8,8 +8,13 @@ import { InputTypeSearch } from "common/components/input/inputTypeSearch";
 import { setNewURL } from "common/components/searchForm/utils/setNewURL";
 import { getInitialGamesList } from "common/services/getInitialGamesList";
 import { getGamesList } from "common/services/getGamesList";
+import { SetLoadingAndData, GamesData } from "interfaceses";
 
-export const SearchForm = ({getGamesData, setLoadingData, className}) => {
+interface SearchFormProps extends SetLoadingAndData{
+  className: string;
+}
+
+export const SearchForm = ({setGamesData, setLoadingData, className}: SearchFormProps) => {
 
   const [text, setText] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,7 +27,7 @@ export const SearchForm = ({getGamesData, setLoadingData, className}) => {
     if (!searchText) {
       setLoadingData(true);
       getInitialGamesList()
-        .then(data => {getGamesData(data); setLoadingData(false)})
+        .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
     }
   }, []);
 
@@ -31,16 +36,16 @@ export const SearchForm = ({getGamesData, setLoadingData, className}) => {
     if(searchText || orderingText) {
       setLoadingData(true);
       getGamesList(searchText, orderingText, setSearchParams, setText, setNewURL)
-        .then(data => {getGamesData(data); setLoadingData(false)})
+        .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
     }
   }, [searchText, orderingText])
 
-  const onChangeTextInInput = (e) => {
-    setText(e.target.value);
+  const onChangeTextInInput = (e: React.ChangeEvent) => {
+    setText((e as React.ChangeEvent<HTMLInputElement>).target.value);
   }
 
   //Change url on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e && e.preventDefault();
     setLoadingData(true);
     navigate("/home?" + setNewURL(text, searchText, orderingText).toString());

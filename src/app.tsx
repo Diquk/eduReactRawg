@@ -6,20 +6,16 @@ import "App.scss";
 import { Header } from "common/components/header/header";
 import { GamesCollection } from "project/home/components/gamesCollection/gamesCollection";
 import { GameContent } from "project/gameDetails/components/gameContent/gameContent";
+import { GamesData } from "interfaceses";
 
 export const App = () => {
 
-  const [gamesData, setGamesData] = useState(null);
+  const [gamesData, setGamesData] = useState<GamesData | null>(null);
   let [isLoadingData, setLoadingData] = useState(true);
-
-  function getGamesData(value) {
-    setGamesData(value);
-  }
 
   return (
     <div className="App">
-      <Header gamesData={gamesData} 
-        getGamesData={getGamesData} 
+      <Header setGamesData={setGamesData} 
         setLoadingData={setLoadingData} />
       <Routes>
         <Route path="/home" 
