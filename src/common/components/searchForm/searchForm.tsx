@@ -1,66 +1,87 @@
-import React, { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
-import "common/components/button/button.scss";
-import "common/components/searchForm/searchForm.scss";
+import 'common/components/button/button.scss';
+import 'common/components/searchForm/searchForm.scss';
 
-import { InputTypeSearch } from "common/components/input/inputTypeSearch";
-import { setNewURL } from "common/components/searchForm/utils/setNewURL";
-import { getInitialGamesList } from "common/services/getInitialGamesList";
-import { getGamesList } from "common/services/getGamesList";
-import { SetLoadingAndData, GamesData } from "interfaceses";
+import { InputTypeSearch } from 'common/components/input/inputTypeSearch';
+import { setNewURL } from 'common/components/searchForm/utils/setNewURL';
+import { getInitialGamesList } from 'common/services/getInitialGamesList';
+import { getGamesList } from 'common/services/getGamesList';
+import { SetLoadingAndData, GamesData } from 'interfaceses';
 
-interface SearchFormProps extends SetLoadingAndData{
+interface SearchFormProps extends SetLoadingAndData {
   className: string;
 }
 
-export const SearchForm = ({setGamesData, setLoadingData, className}: SearchFormProps) => {
-
-  const [text, setText] = useState("");
+export const SearchForm = ({
+  setGamesData,
+  setLoadingData,
+  className,
+}: SearchFormProps) => {
+  const [text, setText] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const searchText = searchParams.get("search");
-  const orderingText = searchParams.get("ordering");
+  const searchText = searchParams.get('search');
+  const orderingText = searchParams.get('ordering');
 
   useEffect(() => {
     if (!searchText) {
       setLoadingData(true);
-      getInitialGamesList()
-        .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
+      getInitialGamesList().then((data) => {
+        setGamesData(data as GamesData);
+        setLoadingData(false);
+      });
     }
   }, []);
 
   //fetch data on url change
   useEffect(() => {
-    if(searchText || orderingText) {
+    if (searchText || orderingText) {
       setLoadingData(true);
-      getGamesList(searchText, orderingText, setSearchParams, setText, setNewURL)
-        .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
+      getGamesList(
+        searchText,
+        orderingText,
+        setSearchParams,
+        setText,
+        setNewURL
+      ).then((data) => {
+        setGamesData(data as GamesData);
+        setLoadingData(false);
+      });
     }
-  }, [searchText, orderingText])
+  }, [searchText, orderingText]);
 
   const onChangeTextInInput = (e: React.ChangeEvent) => {
     setText((e as React.ChangeEvent<HTMLInputElement>).target.value);
-  }
+  };
 
   //Change url on submit
   const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e && e.preventDefault();
     setLoadingData(true);
-    navigate("/home?" + setNewURL(text, searchText, orderingText).toString());
-  }
-
+    navigate(
+      '/home?' + setNewURL(text, searchText, orderingText).toString()
+    );
+  };
 
   return (
-    <form className={`${className} search-form`} method="GET" action="" onSubmit={handleSubmit}>
+    <form
+      className={`${className} search-form`}
+      method="GET"
+      action=""
+      onSubmit={handleSubmit}
+    >
       <div className="search-form__container">
-        <InputTypeSearch value={text} onChange={onChangeTextInInput}/>
-        <button type="submit"
-        className="button button_type_search">
+        <InputTypeSearch
+          value={text}
+          onChange={onChangeTextInInput}
+        />
+        <button type="submit" className="button button_type_search">
           <div className="button__img"></div>
         </button>
       </div>
     </form>
   );
-}
+};

@@ -1,4 +1,4 @@
-@import "defaultVariables.scss";
+@import 'defaultVariables.scss';
 
 %topLayer {
   position: relative;
@@ -16,7 +16,7 @@
   color: $font-color-white;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;

@@ -4,7 +4,7 @@
   &__input {
     display: none;
 
-    &:checked + .order-button__name{
+    &:checked + .order-button__name {
       background: #ffe0a6;
     }
   }

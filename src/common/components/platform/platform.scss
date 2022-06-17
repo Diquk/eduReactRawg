@@ -12,27 +12,26 @@
   }
 
   &_xbox {
-    background-image: url("./assets/xbox.png");
+    background-image: url('./assets/xbox.png');
   }
 
   &_pc {
-    background-image: url("./assets/pc.png");
+    background-image: url('./assets/pc.png');
   }
 
   &_playstation {
-    background-image: url("./assets/playstation.png");
+    background-image: url('./assets/playstation.png');
   }
 
   &_nintendo {
-    background-image: url("./assets/nintendo.png");
+    background-image: url('./assets/nintendo.png');
   }
 
   &_macos {
-    background-image: url("./assets/mac.png");
+    background-image: url('./assets/mac.png');
   }
 
   &_linux {
-    background-image: url("./assets/linux.png");
+    background-image: url('./assets/linux.png');
   }
-
 }

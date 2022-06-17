@@ -3,10 +3,9 @@ interface TabContentProps {
   children: React.ReactNode;
 }
 
-export const TabContent = ({tabClassName, children}: TabContentProps) => {
-  return (
-    <div className={tabClassName}>
-      { children }
-    </div>
-  );
-}
+export const TabContent = ({
+  tabClassName,
+  children,
+}: TabContentProps) => {
+  return <div className={tabClassName}>{children}</div>;
+};
