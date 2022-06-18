@@ -1,7 +1,7 @@
+import { ReactChildren } from "common/models/interfaces";
 import { useState, useEffect } from "react";
 
-interface SliderContentProps {
-  children: React.ReactNode;
+interface SliderContentProps extends ReactChildren{
   position: number;
   currentPosition: number;
 }

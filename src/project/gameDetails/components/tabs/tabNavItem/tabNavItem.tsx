@@ -2,11 +2,11 @@ interface TabNavItemProps {
   title: string;
   id: string;
   activeTab: string;
-  setActiveTab: (a: string) => void;
+  setActiveTab: (activeTab: string) => void;
 }
 
 export const TabNavItem = ({title, id, activeTab, setActiveTab}: TabNavItemProps) => {
-  const onClickChangeActive = () => {
+  const onClickChangeActive = (): void => {
     setActiveTab(id);
   }
 

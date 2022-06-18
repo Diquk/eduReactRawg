@@ -5,11 +5,11 @@ import "project/home/components/gameCard/gameCard.scss";
 
 import { getUniqPlatforms } from "common/components/platform/utils/getUniqPlatforms";
 import { Platform } from "common/components/platform/platform";
-import { GameItem } from "interfaceses";
+import { GameItem } from "common/models/interfaces";
 
 export const GameCard = ({metacritic, name, platforms, background_image, id}: GameItem) => {
-  const listOfPlatforms = getUniqPlatforms(platforms).map(item => {
-    return <Platform platform={item} key={item} />
+  const listOfPlatforms = getUniqPlatforms(platforms).map(platform => {
+    return <Platform platform={platform} key={platform} />
   });
   
   return(

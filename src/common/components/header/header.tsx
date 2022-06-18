@@ -5,9 +5,13 @@ import "common/components/companyName/companyName.scss";
 import "common/components/link/link.scss";
 
 import { SearchForm } from "common/components/searchForm/searchForm";
-import { SetLoadingAndData } from "interfaceses";
+import { SetLoadingAndData } from "common/models/interfaces";
 
-export const Header = ({setGamesData, setLoadingData}: SetLoadingAndData) => {
+interface HeaderProps extends SetLoadingAndData {
+
+}
+
+export const Header = ({setGamesData, setLoadingData}: HeaderProps) => {
   return (
     <header className="header">
       <Link to="/home" className="company-name header__company-name link">Games DB</Link>

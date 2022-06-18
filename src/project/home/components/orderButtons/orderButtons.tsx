@@ -21,11 +21,13 @@ export const OrderButtons = () => {
   useEffect(() => {
     if(searchParams.get("ordering")) {
       setChekedOrder(searchParams.get("ordering"));
+    } else {
+      setChekedOrder(null);
     }
   }, [searchParams]);
 
   //Change url on radio button click
-  function onOrderRadioChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function onOrderRadioChange(e: React.ChangeEvent<HTMLInputElement>): void {
     let newSearchUrl = new URLSearchParams();
     newSearchUrl.set("ordering", e.target.value);
     let searchText = searchParams.get("search");

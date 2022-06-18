@@ -6,12 +6,12 @@ import "App.scss";
 import { Header } from "common/components/header/header";
 import { GamesCollection } from "project/home/components/gamesCollection/gamesCollection";
 import { GameContent } from "project/gameDetails/components/gameContent/gameContent";
-import { GamesData } from "interfaceses";
+import { GamesData } from "common/models/interfaces";
 
 export const App = () => {
 
   const [gamesData, setGamesData] = useState<GamesData | null>(null);
-  let [isLoadingData, setLoadingData] = useState(true);
+  const [isLoadingData, setLoadingData] = useState(true);
 
   return (
     <div className="App">

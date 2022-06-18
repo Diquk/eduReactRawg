@@ -10,17 +10,18 @@ import { getGameVideos } from "project/gameDetails/services/getGamesVideos";
 import { Tabs } from "project/gameDetails/components/tabs/tabs";
 import { Loader } from "common/components/loader/loader";
 import { EmptyResults } from "project/gameDetails/components/emptyResults/emptyResults";
-import { GameItem, GameScreenshots, GameVideos } from "interfaceses";
+import { GameItem } from "common/models/interfaces";
+import { GameScreenshots, GameVideos } from "project/gameDetails/models/gameModels";
 
 interface GameContentProps {
-  setLoadingData: (a: boolean) => void;
+  setLoadingData: (isLoading: boolean) => void;
   isLoadingData: boolean;
 }
 export const GameContent = ({setLoadingData, isLoadingData}: GameContentProps) => {
-  let [gameData, setGameData] = useState<GameItem | null>(null);
-  let [gameScreenshots, setGameScreenshots] = useState<GameScreenshots | null>(null);
-  let [gameVideos, setGamesVideos] = useState<GameVideos | null>(null);
-  let [responseError, setResponseError] = useState(null);
+  const [gameData, setGameData] = useState<GameItem | null>(null);
+  const [gameScreenshots, setGameScreenshots] = useState<GameScreenshots | null>(null);
+  const [gameVideos, setGamesVideos] = useState<GameVideos | null>(null);
+  const [responseError, setResponseError] = useState(null);
   const gameId = useParams().gameId;
   
   useEffect(() => {

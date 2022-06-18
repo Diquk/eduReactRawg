@@ -1,12 +1,10 @@
-import { GameItem, GameScreenshots, GamesData, GameVideos } from "interfaceses";
-
-export const baseFetch = (url: string): Promise<GamesData| GameScreenshots | GameVideos| GameItem> => {
+export const baseFetch = <T>(url: string): Promise<T> => {
   return fetch(url)
           .then((response) => {
             if (!response.ok) {
               throw new Error(`Request error! Status: ${response.status}`);
             }
-            return response.json() as Promise<GamesData| GameScreenshots | GameVideos | GameItem>;
+            return response.json() as Promise<T>;
           })  
           .then((data) => data);
 }

@@ -1,6 +1,6 @@
-import { GamePlatform } from "interfaceses";
+import { GamePlatform } from "common/models/interfaces";
 
-export const getUniqPlatforms = (gamePlatforms?: GamePlatform[] | null): string[] | [] => {
+export const getUniqPlatforms = (gamePlatforms?: GamePlatform[]): string[] | [] => {
   let uniqPlatforms: Set<string> = new Set();
   gamePlatforms?.forEach(item => { 
     let platformName = item.platform.name.split(" ")[0];

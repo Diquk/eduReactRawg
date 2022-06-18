@@ -4,11 +4,11 @@ import "project/gameDetails/components/titleInfo/titleInfo.scss";
 import { getUniqPlatforms } from "common/components/platform/utils/getUniqPlatforms";
 import { Platform } from "common/components/platform/platform";
 import { getGameGenres } from "project/gameDetails/components/titleInfo/utils/getGameGenres";
-import { GameItem } from "interfaceses";
+import { GameItem } from "common/models/interfaces";
 
 export const TitleInfo = ({name, released, metacritic, genres, platforms, background_image}: GameItem) => {
-  const listOfPlatforms = getUniqPlatforms(platforms).map(item => {
-    return <Platform platform={item} key={item} mod={"title"}/>
+  const listOfPlatforms = getUniqPlatforms(platforms).map(platform => {
+    return <Platform platform={platform} key={platform} mod={"title"}/>
   });
 
   return (

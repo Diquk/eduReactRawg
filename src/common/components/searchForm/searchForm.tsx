@@ -8,7 +8,7 @@ import { InputTypeSearch } from "common/components/input/inputTypeSearch";
 import { setNewURL } from "common/components/searchForm/utils/setNewURL";
 import { getInitialGamesList } from "common/services/getInitialGamesList";
 import { getGamesList } from "common/services/getGamesList";
-import { SetLoadingAndData, GamesData } from "interfaceses";
+import { SetLoadingAndData, GamesData } from "common/models/interfaces";
 
 interface SearchFormProps extends SetLoadingAndData{
   className: string;
@@ -23,13 +23,13 @@ export const SearchForm = ({setGamesData, setLoadingData, className}: SearchForm
   const searchText = searchParams.get("search");
   const orderingText = searchParams.get("ordering");
 
-  useEffect(() => {
-    if (!searchText) {
-      setLoadingData(true);
-      getInitialGamesList()
-        .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!searchText) {
+  //     setLoadingData(true);
+  //     getInitialGamesList()
+  //       .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
+  //   }
+  // }, []);
 
   //fetch data on url change
   useEffect(() => {
@@ -37,18 +37,23 @@ export const SearchForm = ({setGamesData, setLoadingData, className}: SearchForm
       setLoadingData(true);
       getGamesList(searchText, orderingText, setSearchParams, setText, setNewURL)
         .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
+    } else {
+      setLoadingData(true);
+       getInitialGamesList()
+         .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
     }
+
   }, [searchText, orderingText])
 
-  const onChangeTextInInput = (e: React.ChangeEvent) => {
+  const onChangeTextInInput = (e: React.ChangeEvent): void => {
     setText((e as React.ChangeEvent<HTMLInputElement>).target.value);
   }
 
   //Change url on submit
-  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): void => {
     e && e.preventDefault();
     setLoadingData(true);
-    navigate("/home?" + setNewURL(text, searchText, orderingText).toString());
+    navigate("/home?" + setNewURL(text, orderingText).toString());
   }
 
 

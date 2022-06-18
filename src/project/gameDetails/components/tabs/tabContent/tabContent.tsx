@@ -1,6 +1,7 @@
-interface TabContentProps {
+import { ReactChildren } from "common/models/interfaces";
+
+interface TabContentProps extends ReactChildren{
   tabClassName: string;
-  children: React.ReactNode;
 }
 
 export const TabContent = ({tabClassName, children}: TabContentProps) => {
