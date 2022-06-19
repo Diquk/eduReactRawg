@@ -1,4 +1,4 @@
-@import "defaultVariables";
+@import 'defaultVariables.scss';
 
 .tabs {
   &__navigation {
@@ -11,8 +11,8 @@
   &__nav-item {
     display: flex;
     align-items: center;
-    padding: 0 1.5rem;
     height: 100%;
+    padding: 0 1.5rem;
     cursor: pointer;
 
     &_active {

@@ -1,38 +1,40 @@
-@import "defaultVariables.scss";
+@import 'defaultVariables.scss';
 
-%topLayer {
+%top-layer {
   position: relative;
-  margin: 0;
   z-index: $z-index-top;
+  margin: 0;
 }
 
 .title-info {
   position: relative;
-  padding: 2rem;
   width: 100%;
-  background-size: cover;
+  padding: 2rem;
+  color: $font-color-white;
   background-repeat: no-repeat;
   background-position-y: 50%;
-  color: $font-color-white;
+  background-size: cover;
 
   &::after {
-    content: "";
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     background-color: $font-color-main;
     opacity: $opacity-half;
+    content: '';
   }
 
   &__title {
-    @extend %topLayer;
+    @extend %top-layer;
+
     font-weight: 600;
   }
 
   &__release {
-    @extend %topLayer;
+    @extend %top-layer;
+
     margin: 1.5rem 0;
     font-weight: 600;
   }
@@ -42,11 +44,12 @@
   }
 
   &__genres {
-    @extend %topLayer;
+    @extend %top-layer;
   }
 
   &__platforms {
-    @extend %topLayer;
+    @extend %top-layer;
+
     margin-top: 1rem;
   }
 }

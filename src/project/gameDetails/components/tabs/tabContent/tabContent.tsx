@@ -1,13 +1,12 @@
-import { ReactChildren } from "common/models/interfaces";
+import { ReactChildren } from 'common/models/interfaces';
 
-interface TabContentProps extends ReactChildren{
+interface TabContentProps extends ReactChildren {
   tabClassName: string;
 }
 
-export const TabContent = ({tabClassName, children}: TabContentProps) => {
-  return (
-    <div className={tabClassName}>
-      { children }
-    </div>
-  );
-}
+export const TabContent = ({
+  tabClassName,
+  children,
+}: TabContentProps) => {
+  return <div className={tabClassName}>{children}</div>;
+};

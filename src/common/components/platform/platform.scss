@@ -1,10 +1,10 @@
 .platform {
   display: inline-block;
-  padding: 0 10px;
   width: 30px;
   height: 20px;
-  background-size: contain;
+  padding: 0 10px;
   background-repeat: no-repeat;
+  background-size: contain;
 
   &_title {
     width: 50px;
@@ -12,27 +12,26 @@
   }
 
   &_xbox {
-    background-image: url("./assets/xbox.png");
+    background-image: url('./assets/xbox.png');
   }
 
   &_pc {
-    background-image: url("./assets/pc.png");
+    background-image: url('./assets/pc.png');
   }
 
   &_playstation {
-    background-image: url("./assets/playstation.png");
+    background-image: url('./assets/playstation.png');
   }
 
   &_nintendo {
-    background-image: url("./assets/nintendo.png");
+    background-image: url('./assets/nintendo.png');
   }
 
   &_macos {
-    background-image: url("./assets/mac.png");
+    background-image: url('./assets/mac.png');
   }
 
   &_linux {
-    background-image: url("./assets/linux.png");
+    background-image: url('./assets/linux.png');
   }
-
 }

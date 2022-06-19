@@ -1,4 +1,4 @@
-import { EArrowDirection } from "project/gameDetails/enums/EArrowDirection";
+import { EArrowDirection } from 'project/gameDetails/enums/EArrowDirection';
 
 interface SliderArrowPorps {
   currentPosition: number;
@@ -7,20 +7,33 @@ interface SliderArrowPorps {
   isActive: boolean;
 }
 
-export const SliderArrow = ({currentPosition, changePosition, direction, isActive}: SliderArrowPorps) => {
-  const setClassName = (direction: string, isActive: boolean): string => {
-    return `slider__arrow slider__arrow_${direction} slider__arrow_${isActive ? "active" : "deactive"}`;;
-  }
+export const SliderArrow = ({
+  currentPosition,
+  changePosition,
+  direction,
+  isActive,
+}: SliderArrowPorps) => {
+  const setClassName = (
+    arrowName: string,
+    isState: boolean
+  ): string => {
+    return `slider__arrow slider__arrow_${arrowName} slider__arrow_${
+      isState ? 'active' : 'deactive'
+    }`;
+  };
 
   const onArrowClick = () => {
-    if(isActive) { 
-      direction === EArrowDirection.Left 
-        ? changePosition(currentPosition-1)
-        : changePosition(currentPosition+1);
+    if (isActive) {
+      direction === EArrowDirection.Left
+        ? changePosition(currentPosition - 1)
+        : changePosition(currentPosition + 1);
     }
-  }
+  };
 
- 
-  return <div className={setClassName(direction, isActive)}
-              onClick={onArrowClick}></div>
-}
+  return (
+    <div
+      className={setClassName(direction, isActive)}
+      onClick={onArrowClick}
+    ></div>
+  );
+};

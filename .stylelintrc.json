@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-rational-order",
+    "stylelint-config-prettier-scss"
+  ],
+  "plugins": ["stylelint-order", "stylelint-scss"],
+  "rules": {
+    "scss/at-import-partial-extension": "always",
+    "selector-class-pattern": null
+  }
+}

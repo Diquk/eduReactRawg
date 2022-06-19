@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import "project/gameDetails/components/slider/slider.scss";
+import 'project/gameDetails/components/slider/slider.scss';
 
-import { SliderArrow } from "project/gameDetails/components/slider/sliderArrow/sliderArrow";
-import { SliderContent } from "project/gameDetails/components/slider/sliderContent/sliderContent";
-import { GameScreenshot, GameVideo } from "project/gameDetails/models/gameModels";
-import { ESliderContentTypes } from "project/gameDetails/enums/ESliderContentTypes";
-import { EArrowDirection } from "project/gameDetails/enums/EArrowDirection";
+import { SliderArrow } from 'project/gameDetails/components/slider/sliderArrow/sliderArrow';
+import { SliderContent } from 'project/gameDetails/components/slider/sliderContent/sliderContent';
+import {
+  GameScreenshot,
+  GameVideo,
+} from 'project/gameDetails/models/gameModels';
+import { ESliderContentTypes } from 'project/gameDetails/enums/ESliderContentTypes';
+import { EArrowDirection } from 'project/gameDetails/enums/EArrowDirection';
 
 interface ImageContent {
   tag: ESliderContentTypes.Images;
@@ -25,11 +28,23 @@ export const Slider = ({ arrayOfContent, tag }: SliderProps) => {
   const listOfContent =
     arrayOfContent?.map((item, index) => {
       return tag === ESliderContentTypes.Images ? (
-        <SliderContent position={index} currentPosition={position} key={index}>
-          <img src={(item as GameScreenshot).image} className="slider__img" alt="screenshot"/>
+        <SliderContent
+          position={index}
+          currentPosition={position}
+          key={index}
+        >
+          <img
+            src={(item as GameScreenshot).image}
+            className="slider__img"
+            alt="screenshot"
+          />
         </SliderContent>
       ) : tag === ESliderContentTypes.Videos ? (
-        <SliderContent position={index} currentPosition={position} key={index}>
+        <SliderContent
+          position={index}
+          currentPosition={position}
+          key={index}
+        >
           <video className="slider__video" controls muted>
             <source src={(item as GameVideo).data[480]} />
           </video>
@@ -51,7 +66,9 @@ export const Slider = ({ arrayOfContent, tag }: SliderProps) => {
           currentPosition={position}
           changePosition={setPosition}
           direction={EArrowDirection.Right}
-          isActive={arrayOfContent && position < arrayOfContent.length - 1}
+          isActive={
+            arrayOfContent && position < arrayOfContent.length - 1
+          }
         />
       </div>
     </div>

@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import "project/gameDetails/components/tabs/tabs.scss";
+import 'project/gameDetails/components/tabs/tabs.scss';
 
-import { TabNavItem } from "project/gameDetails/components/tabs/tabNavItem/tabNavItem";
-import { TabContent } from "project/gameDetails/components/tabs/tabContent/tabContent";
-import { Slider } from "project/gameDetails/components/slider/slider";
-import { EmptyResults } from "project/gameDetails/components/emptyResults/emptyResults";
-import { GameScreenshot, GameVideo } from "project/gameDetails/models/gameModels";
-import { ESliderContentTypes } from "project/gameDetails/enums/ESliderContentTypes";
+import { TabNavItem } from 'project/gameDetails/components/tabs/tabNavItem/tabNavItem';
+import { TabContent } from 'project/gameDetails/components/tabs/tabContent/tabContent';
+import { Slider } from 'project/gameDetails/components/slider/slider';
+import { EmptyResults } from 'project/gameDetails/components/emptyResults/emptyResults';
+import {
+  GameScreenshot,
+  GameVideo,
+} from 'project/gameDetails/models/gameModels';
+import { ESliderContentTypes } from 'project/gameDetails/enums/ESliderContentTypes';
 
 interface TabsProps {
   gameDescription?: string;
@@ -20,11 +23,11 @@ export const Tabs = ({
   gameScreenshots,
   gameVideos,
 }: TabsProps) => {
-  const [activeTab, setActiveTab] = useState("tab1");
+  const [activeTab, setActiveTab] = useState('tab1');
 
   const setTabClassName = (tabId: string): string => {
     return `tabs__content tabs__content_${
-      tabId === activeTab ? "active" : "deactive"
+      tabId === activeTab ? 'active' : 'deactive'
     }`;
   };
 
@@ -50,21 +53,29 @@ export const Tabs = ({
           setActiveTab={setActiveTab}
         />
       </div>
-      <TabContent tabClassName={setTabClassName("tab1")}>
+      <TabContent tabClassName={setTabClassName('tab1')}>
         {gameDescription && (
-          <div dangerouslySetInnerHTML={{ __html: gameDescription }} />
+          <div
+            dangerouslySetInnerHTML={{ __html: gameDescription }}
+          />
         )}
       </TabContent>
-      <TabContent tabClassName={setTabClassName("tab2")}>
+      <TabContent tabClassName={setTabClassName('tab2')}>
         {gameScreenshots?.length ? (
-          <Slider arrayOfContent={gameScreenshots} tag={ESliderContentTypes.Images} />
+          <Slider
+            arrayOfContent={gameScreenshots}
+            tag={ESliderContentTypes.Images}
+          />
         ) : (
           <EmptyResults />
         )}
       </TabContent>
-      <TabContent tabClassName={setTabClassName("tab3")}>
+      <TabContent tabClassName={setTabClassName('tab3')}>
         {gameVideos?.length ? (
-          <Slider arrayOfContent={gameVideos} tag={ESliderContentTypes.Videos} />
+          <Slider
+            arrayOfContent={gameVideos}
+            tag={ESliderContentTypes.Videos}
+          />
         ) : (
           <EmptyResults />
         )}
