@@ -1,3 +1,3 @@
 export enum EVideoQuality {
-    Middle = "480"
+  Middle = '480',
 }

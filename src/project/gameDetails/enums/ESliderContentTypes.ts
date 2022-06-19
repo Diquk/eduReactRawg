@@ -1,4 +1,4 @@
 export enum ESliderContentTypes {
-    Images = 'img',
-    Videos = 'video'
+  Images = 'img',
+  Videos = 'video',
 }
