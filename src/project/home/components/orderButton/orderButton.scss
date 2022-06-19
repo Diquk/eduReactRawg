@@ -1,28 +1,28 @@
 .order-button {
   display: inline-block;
 
-  &__input {
-    display: none;
-
-    &:checked + .order-button__name{
-      background: #ffe0a6;
-    }
-  }
-
   &__name {
     display: flex;
     justify-content: center;
     min-width: 150px;
-    cursor: pointer;
-    padding: 0px 15px;
+    padding: 0 15px;
     line-height: 34px;
+    text-transform: capitalize;
     border: 1px solid #999;
     border-radius: 6px;
+    cursor: pointer;
     user-select: none;
-    text-transform: capitalize;
 
     &:hover {
       background-color: #666;
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .order-button__name {
+      background: #ffe0a6;
     }
   }
 }

@@ -1,13 +1,13 @@
-@import "defaultVariables.scss";
+@import 'defaultVariables.scss';
 
 .rating {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 3rem;
   height: 3rem;
-  background-color: $font-color-green;
   font-weight: 700;
+  background-color: $font-color-green;
 
   &_title {
     width: 2.5rem;
