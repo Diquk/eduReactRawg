@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 
 import 'project/gameDetails/components/gameContent/gameContent.scss';
 
+import {
+  setLoadingTrue,
+  setLoadingFalse,
+  selectLoading,
+} from 'common/slices/loadingSlice';
 import { TitleInfo } from 'project/gameDetails/components/titleInfo/titleInfo';
 import { getGameData } from 'project/gameDetails/services/getGameData';
 import { getGameScreenshots } from 'project/gameDetails/services/getGameScreenshots';
@@ -16,14 +22,7 @@ import {
   GameVideos,
 } from 'project/gameDetails/models/gameModels';
 
-interface GameContentProps {
-  setLoadingData: (isLoading: boolean) => void;
-  isLoadingData: boolean;
-}
-export const GameContent = ({
-  setLoadingData,
-  isLoadingData,
-}: GameContentProps) => {
+export const GameContent = () => {
   const [gameData, setGameData] = useState<GameItem | null>(null);
   const [gameScreenshots, setGameScreenshots] =
     useState<GameScreenshots | null>(null);
@@ -32,10 +31,12 @@ export const GameContent = ({
   );
   const [responseError, setResponseError] = useState(null);
   const gameId = useParams().gameId;
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
 
   useEffect(() => {
     if (gameId) {
-      setLoadingData(true);
+      dispatch(setLoadingTrue());
       Promise.all([
         getGameData(gameId).catch((error) => setResponseError(error)),
         getGameScreenshots(gameId).catch((error) =>
@@ -49,13 +50,13 @@ export const GameContent = ({
           setGameData(gameDataLocal as GameItem);
           setGameScreenshots(gameScreenshotsLocal as GameScreenshots);
           setGamesVideos(gameVideosLocal as GameVideos);
-          setLoadingData(false);
+          dispatch(setLoadingFalse());
         }
       );
     }
   }, []);
 
-  return isLoadingData ? (
+  return isLoading ? (
     <Loader />
   ) : responseError ? (
     <EmptyResults />

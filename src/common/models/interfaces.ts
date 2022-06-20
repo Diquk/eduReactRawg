@@ -25,11 +25,6 @@ export interface ReactChildren {
   children: React.ReactNode;
 }
 
-export interface SetLoadingAndData {
-  setGamesData: (gamesData: GamesData) => void;
-  setLoadingData: (isLoading: boolean) => void;
-}
-
 export interface GamePlatform {
   platform: {
     name: string;

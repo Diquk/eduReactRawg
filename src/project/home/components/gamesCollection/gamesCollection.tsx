@@ -1,18 +1,16 @@
+import { useSelector } from 'react-redux';
+
 import 'project/home/components/gamesCollection/gamesCollection.scss';
 
-import { GameCard } from 'project/home/components/gameCard/gameCard';
 import { Loader } from 'common/components/loader/loader';
+import { selectLoading } from 'common/slices/loadingSlice';
+import { GameCard } from 'project/home/components/gameCard/gameCard';
 import { OrderButtons } from 'project/home/components/orderButtons/orderButtons';
-import { GamesData } from 'common/models/interfaces';
+import { selectGames } from 'project/home/slices/gamesSlice';
 
-interface GamesCollectionProps {
-  gamesData: GamesData | null;
-  isLoadingData: boolean;
-}
-export const GamesCollection = ({
-  gamesData,
-  isLoadingData,
-}: GamesCollectionProps) => {
+export const GamesCollection = () => {
+  const gamesData = useSelector(selectGames);
+  const isLoading = useSelector(selectLoading);
   const listGames =
     gamesData &&
     gamesData.results.map((game) => (
@@ -30,7 +28,7 @@ export const GamesCollection = ({
     <div className="content">
       <OrderButtons />
       <div className="games-collection">
-        {isLoadingData ? <Loader /> : listGames}
+        {isLoading ? <Loader /> : listGames}
       </div>
     </div>
   );
