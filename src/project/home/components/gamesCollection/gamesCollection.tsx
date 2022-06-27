@@ -1,19 +1,17 @@
-import { useSelector } from 'react-redux';
-
 import 'project/home/components/gamesCollection/gamesCollection.scss';
 
 import { Loader } from 'common/components/loader/loader';
-import { selectLoading } from 'common/slices/loadingSlice';
+import { useAppSelector } from 'common/hooks/reduxHooks';
 import { GameCard } from 'project/home/components/gameCard/gameCard';
 import { OrderButtons } from 'project/home/components/orderButtons/orderButtons';
-import { selectGames } from 'project/home/slices/gamesSlice';
+import { gamesSelector } from 'project/home/slices/gamesSlice';
 
-export const GamesCollection = () => {
-  const gamesData = useSelector(selectGames);
-  const isLoading = useSelector(selectLoading);
+export default function GamesCollection() {
+  const gamesData = useAppSelector(gamesSelector.selectAll);
+  const isLoading = useAppSelector((state) => state.games.loading);
   const listGames =
     gamesData &&
-    gamesData.results.map((game) => (
+    gamesData?.map((game) => (
       <GameCard
         key={game.id}
         metacritic={game.metacritic}
@@ -32,4 +30,4 @@ export const GamesCollection = () => {
       </div>
     </div>
   );
-};
+}

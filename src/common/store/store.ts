@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import loadingReducer from 'common/slices/loadingSlice';
 import gamesReducer from 'project/home/slices/gamesSlice';
+import gameReducer from 'project/gameDetails/slices/gameSlice';
 
 export const store = configureStore({
   reducer: {
     games: gamesReducer,
-    loading: loadingReducer,
+    game: gameReducer,
   },
 });
 
