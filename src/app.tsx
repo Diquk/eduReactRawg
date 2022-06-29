@@ -1,44 +1,34 @@
-import { useState } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import 'app.scss';
 
 import { Header } from 'common/components/header/header';
-import { GamesCollection } from 'project/home/components/gamesCollection/gamesCollection';
-import { GameContent } from 'project/gameDetails/components/gameContent/gameContent';
-import { GamesData } from 'common/models/interfaces';
+import { Loader } from 'common/components/loader/loader';
+const GamesCollection = lazy(
+  () =>
+    import('project/home/components/gamesCollection/gamesCollection')
+);
+
+const GameContent = lazy(
+  () =>
+    import('project/gameDetails/components/gameContent/gameContent')
+);
 
 export const App = () => {
-  const [gamesData, setGamesData] = useState<GamesData | null>(null);
-  const [isLoadingData, setLoadingData] = useState(true);
-
   return (
     <div className="app">
-      <Header
-        setGamesData={setGamesData}
-        setLoadingData={setLoadingData}
-      />
-      <Routes>
-        <Route
-          path="/home"
-          element={
-            <GamesCollection
-              gamesData={gamesData}
-              isLoadingData={isLoadingData}
-            />
-          }
-        />
-        <Route
-          path="/game-details/:gameId"
-          element={
-            <GameContent
-              setLoadingData={setLoadingData}
-              isLoadingData={isLoadingData}
-            />
-          }
-        />
-        <Route path="*" element={<Navigate to="/home" replace />} />
-      </Routes>
+      <Header />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/home" element={<GamesCollection />} />
+          <Route
+            path="/game-details/:gameId"
+            element={<GameContent />}
+          />
+          <Route path="*" element={<Navigate to="/home" replace />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };

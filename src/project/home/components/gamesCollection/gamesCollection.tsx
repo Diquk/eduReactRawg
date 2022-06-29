@@ -1,21 +1,17 @@
 import 'project/home/components/gamesCollection/gamesCollection.scss';
 
-import { GameCard } from 'project/home/components/gameCard/gameCard';
 import { Loader } from 'common/components/loader/loader';
+import { useAppSelector } from 'common/hooks/reduxHooks';
+import { GameCard } from 'project/home/components/gameCard/gameCard';
 import { OrderButtons } from 'project/home/components/orderButtons/orderButtons';
-import { GamesData } from 'common/models/interfaces';
+import { gamesSelector } from 'project/home/slices/gamesSlice';
 
-interface GamesCollectionProps {
-  gamesData: GamesData | null;
-  isLoadingData: boolean;
-}
-export const GamesCollection = ({
-  gamesData,
-  isLoadingData,
-}: GamesCollectionProps) => {
+export default function GamesCollection() {
+  const gamesData = useAppSelector(gamesSelector.selectAll);
+  const isLoading = useAppSelector((state) => state.games.loading);
   const listGames =
     gamesData &&
-    gamesData.results.map((game) => (
+    gamesData?.map((game) => (
       <GameCard
         key={game.id}
         metacritic={game.metacritic}
@@ -30,8 +26,8 @@ export const GamesCollection = ({
     <div className="content">
       <OrderButtons />
       <div className="games-collection">
-        {isLoadingData ? <Loader /> : listGames}
+        {isLoading ? <Loader /> : listGames}
       </div>
     </div>
   );
-};
+}

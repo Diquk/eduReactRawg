@@ -1,16 +1,14 @@
 import { GamesData } from 'common/models/interfaces';
 import { baseFetch } from 'common/services/baseFetch';
+import { GetGamesListArgs } from 'common/models/interfaces';
 
-export const getGamesList = (
-  searchText: string | null,
-  orderingText: string | null,
-  setSearchParams: (searchParams: URLSearchParams) => void,
-  setText: (text: string) => void,
-  setNewURL: (
-    searchText: string | null,
-    orderingText: string | null
-  ) => URLSearchParams
-): Promise<GamesData> => {
+export const getGamesList = ({
+  searchText,
+  orderingText,
+  setSearchParams,
+  setText,
+  setNewURL,
+}: GetGamesListArgs): Promise<GamesData> => {
   let newURL = setNewURL(searchText, orderingText);
   setSearchParams(newURL);
   searchText && setText(searchText);
