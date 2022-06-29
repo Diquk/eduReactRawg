@@ -6,57 +6,39 @@ import 'common/components/searchForm/searchForm.scss';
 
 import { InputTypeSearch } from 'common/components/input/inputTypeSearch';
 import { setNewURL } from 'common/components/searchForm/utils/setNewURL';
-import { getInitialGamesList } from 'common/services/getInitialGamesList';
-import { getGamesList } from 'common/services/getGamesList';
+import { useAppDispatch } from 'common/hooks/reduxHooks';
 import {
-  SetLoadingAndData,
-  GamesData,
-} from 'common/models/interfaces';
+  fetchGamesBySearch,
+  fetchInitialGames,
+} from 'project/home/slices/gamesSlice';
 
-interface SearchFormProps extends SetLoadingAndData {
+interface SearchFormProps {
   className: string;
 }
 
-export const SearchForm = ({
-  setGamesData,
-  setLoadingData,
-  className,
-}: SearchFormProps) => {
+export const SearchForm = ({ className }: SearchFormProps) => {
   const [text, setText] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const searchText = searchParams.get('search');
   const orderingText = searchParams.get('ordering');
 
-  // useEffect(() => {
-  //   if (!searchText) {
-  //     setLoadingData(true);
-  //     getInitialGamesList()
-  //       .then(data => {setGamesData(data as GamesData); setLoadingData(false)})
-  //   }
-  // }, []);
-
   //fetch data on url change
   useEffect(() => {
     if (searchText || orderingText) {
-      setLoadingData(true);
-      getGamesList(
-        searchText,
-        orderingText,
-        setSearchParams,
-        setText,
-        setNewURL
-      ).then((data) => {
-        setGamesData(data as GamesData);
-        setLoadingData(false);
-      });
+      dispatch(
+        fetchGamesBySearch({
+          searchText,
+          orderingText,
+          setSearchParams,
+          setText,
+          setNewURL,
+        })
+      );
     } else {
-      setLoadingData(true);
-      getInitialGamesList().then((data) => {
-        setGamesData(data as GamesData);
-        setLoadingData(false);
-      });
+      dispatch(fetchInitialGames());
     }
   }, [searchText, orderingText]);
 
@@ -69,7 +51,6 @@ export const SearchForm = ({
     e: React.MouseEvent<HTMLFormElement>
   ): void => {
     e && e.preventDefault();
-    setLoadingData(true);
     navigate('/home?' + setNewURL(text, orderingText).toString());
   };
 

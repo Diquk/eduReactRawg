@@ -8,7 +8,18 @@ export interface GameItem {
   released?: string;
   genres?: GameGenre[];
   description?: string;
-  id?: number;
+  id: number;
+}
+
+export interface GetGamesListArgs {
+  searchText: string | null;
+  orderingText: string | null;
+  setSearchParams: (searchParams: URLSearchParams) => void;
+  setText: (text: string) => void;
+  setNewURL: (
+    searchText: string | null,
+    orderingText: string | null
+  ) => URLSearchParams;
 }
 
 export interface RawgResponse<T> {
@@ -23,11 +34,6 @@ export interface GameGenre {
 
 export interface ReactChildren {
   children: React.ReactNode;
-}
-
-export interface SetLoadingAndData {
-  setGamesData: (gamesData: GamesData) => void;
-  setLoadingData: (isLoading: boolean) => void;
 }
 
 export interface GamePlatform {

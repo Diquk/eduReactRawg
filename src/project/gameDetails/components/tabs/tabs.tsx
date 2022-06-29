@@ -6,24 +6,18 @@ import { TabNavItem } from 'project/gameDetails/components/tabs/tabNavItem/tabNa
 import { TabContent } from 'project/gameDetails/components/tabs/tabContent/tabContent';
 import { Slider } from 'project/gameDetails/components/slider/slider';
 import { EmptyResults } from 'project/gameDetails/components/emptyResults/emptyResults';
-import {
-  GameScreenshot,
-  GameVideo,
-} from 'project/gameDetails/models/gameModels';
 import { ESliderContentTypes } from 'project/gameDetails/enums/ESliderContentTypes';
+import { useAppSelector } from 'common/hooks/reduxHooks';
 
-interface TabsProps {
-  gameDescription?: string;
-  gameScreenshots?: GameScreenshot[];
-  gameVideos?: GameVideo[];
-}
-
-export const Tabs = ({
-  gameDescription,
-  gameScreenshots,
-  gameVideos,
-}: TabsProps) => {
+export const Tabs = () => {
   const [activeTab, setActiveTab] = useState('tab1');
+  const gameItem = useAppSelector((state) => state.game.game);
+  const { screenshots: gameScreenshots } = useAppSelector(
+    (state) => state.game
+  );
+  const { videos: gameVideos } = useAppSelector(
+    (state) => state.game
+  );
 
   const setTabClassName = (tabId: string): string => {
     return `tabs__content tabs__content_${
@@ -54,16 +48,18 @@ export const Tabs = ({
         />
       </div>
       <TabContent tabClassName={setTabClassName('tab1')}>
-        {gameDescription && (
+        {gameItem?.description && (
           <div
-            dangerouslySetInnerHTML={{ __html: gameDescription }}
+            dangerouslySetInnerHTML={{
+              __html: gameItem?.description,
+            }}
           />
         )}
       </TabContent>
       <TabContent tabClassName={setTabClassName('tab2')}>
-        {gameScreenshots?.length ? (
+        {gameScreenshots?.results?.length ? (
           <Slider
-            arrayOfContent={gameScreenshots}
+            arrayOfContent={gameScreenshots?.results}
             tag={ESliderContentTypes.Images}
           />
         ) : (
@@ -71,9 +67,9 @@ export const Tabs = ({
         )}
       </TabContent>
       <TabContent tabClassName={setTabClassName('tab3')}>
-        {gameVideos?.length ? (
+        {gameVideos?.results?.length ? (
           <Slider
-            arrayOfContent={gameVideos}
+            arrayOfContent={gameVideos?.results}
             tag={ESliderContentTypes.Videos}
           />
         ) : (

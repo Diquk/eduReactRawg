@@ -5,14 +5,8 @@ import 'common/components/companyName/companyName.scss';
 import 'common/components/link/link.scss';
 
 import { SearchForm } from 'common/components/searchForm/searchForm';
-import { SetLoadingAndData } from 'common/models/interfaces';
 
-interface HeaderProps extends SetLoadingAndData {}
-
-export const Header = ({
-  setGamesData,
-  setLoadingData,
-}: HeaderProps) => {
+export const Header = () => {
   return (
     <header className="header">
       <Link
@@ -21,11 +15,7 @@ export const Header = ({
       >
         Games DB
       </Link>
-      <SearchForm
-        className="header__search-form"
-        setGamesData={setGamesData}
-        setLoadingData={setLoadingData}
-      />
+      <SearchForm className="header__search-form" />
     </header>
   );
 };

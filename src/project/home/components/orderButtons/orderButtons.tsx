@@ -11,25 +11,6 @@ export const OrderButtons = () => {
     searchParams.get('ordering')
   );
 
-  const listOrders = ['name', 'released', 'metacritic'];
-
-  const listOrdersButtons = listOrders.map((orderName) => (
-    <OrderButton
-      orderName={orderName}
-      key={orderName}
-      checkedOrder={checkedOrder}
-    />
-  ));
-
-  //Set active radio button on url change
-  useEffect(() => {
-    if (searchParams.get('ordering')) {
-      setChekedOrder(searchParams.get('ordering'));
-    } else {
-      setChekedOrder(null);
-    }
-  }, [searchParams]);
-
   //Change url on radio button click
   function onOrderRadioChange(
     e: React.ChangeEvent<HTMLInputElement>
@@ -45,9 +26,25 @@ export const OrderButtons = () => {
     }
   }
 
-  return (
-    <div className="order-buttons" onChange={onOrderRadioChange}>
-      {listOrdersButtons}
-    </div>
-  );
+  const listOrders = ['name', 'released', 'metacritic'];
+
+  const listOrdersButtons = listOrders.map((orderName) => (
+    <OrderButton
+      orderName={orderName}
+      key={orderName}
+      checkedOrder={checkedOrder}
+      onChange={onOrderRadioChange}
+    />
+  ));
+
+  //Set active radio button on url change
+  useEffect(() => {
+    if (searchParams.get('ordering')) {
+      setChekedOrder(searchParams.get('ordering'));
+    } else {
+      setChekedOrder(null);
+    }
+  }, [searchParams]);
+
+  return <div className="order-buttons">{listOrdersButtons}</div>;
 };
