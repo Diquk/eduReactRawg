@@ -26,7 +26,10 @@ export interface RawgResponse<T> {
   results: T[];
 }
 
-export interface GamesData extends RawgResponse<GameItem> {}
+export interface GamesData extends RawgResponse<GameItem> {
+  next: null | string;
+  previous: null | string;
+}
 
 export interface GameGenre {
   name: string;
