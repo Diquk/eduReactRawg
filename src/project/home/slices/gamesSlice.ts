@@ -12,6 +12,7 @@ import {
 } from 'common/models/interfaces';
 import { getGamesList } from 'common/services/getGamesList';
 import { getInitialGamesList } from 'common/services/getInitialGamesList';
+import { baseFetch } from 'common/services/baseFetch';
 import type { RootState } from 'common/store/store';
 
 export const fetchGamesBySearch = createAsyncThunk(
@@ -42,6 +43,14 @@ export const fetchInitialGames = createAsyncThunk(
   }
 );
 
+export const fetchGamesByScrolling = createAsyncThunk(
+  'games/fetchGamesByScrolling',
+  async (url: string) => {
+    const gamesData = await baseFetch<GamesData>(url);
+    return gamesData;
+  }
+);
+
 const gamesAdapter = createEntityAdapter<GameItem>({
   selectId: (game) => game.id.toString(),
 });
@@ -51,6 +60,8 @@ const gamesSlice = createSlice({
   initialState: gamesAdapter.getInitialState({
     loading: false,
     error: null as null | SerializedError,
+    next: null as null | string,
+    previous: null as null | string,
   }),
   reducers: {},
   extraReducers: (builder) => {
@@ -60,8 +71,9 @@ const gamesSlice = createSlice({
       })
       .addCase(fetchGamesBySearch.fulfilled, (state, action) => {
         state.loading = false;
+        state.next = action.payload.next;
+        state.previous = action.payload.previous;
         gamesAdapter.setAll(state, action.payload.results);
-        //state.games = action.payload.results;
       })
       .addCase(fetchGamesBySearch.rejected, (state, action) => {
         state.loading = false;
@@ -72,10 +84,24 @@ const gamesSlice = createSlice({
       })
       .addCase(fetchInitialGames.fulfilled, (state, action) => {
         state.loading = false;
+        state.next = action.payload.next;
+        state.previous = action.payload.previous;
         gamesAdapter.setAll(state, action.payload.results);
-        //state.games = action.payload.results;
       })
       .addCase(fetchInitialGames.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error;
+      })
+      .addCase(fetchGamesByScrolling.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchGamesByScrolling.fulfilled, (state, action) => {
+        state.next = action.payload.next;
+        state.previous = action.payload.previous;
+        gamesAdapter.addMany(state, action.payload.results);
+        state.loading = false;
+      })
+      .addCase(fetchGamesByScrolling.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error;
       });
